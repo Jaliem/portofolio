@@ -65,7 +65,6 @@ window.addEventListener('scroll', function() {
         header.style.background = 'var(--secondary-color)';
         header.style.boxShadow = '0 2px 10px rgba(0, 0, 0, 0.1)';
     } else {
-        header.style.background = 'transparent';
         header.style.boxShadow = 'none';
     }
 });
@@ -264,3 +263,31 @@ style.textContent = `
     }
 `;
 document.head.appendChild(style);
+document.addEventListener("DOMContentLoaded", () => {
+  const menuToggle = document.getElementById("menu-toggle")
+  const mainNav = document.getElementById("main-nav")
+
+  menuToggle.addEventListener("click", function () {
+    mainNav.classList.toggle("active")
+
+    // Change icon based on menu state
+    const icon = this.querySelector("i")
+    if (mainNav.classList.contains("active")) {
+      icon.classList.remove("fa-bars")
+      icon.classList.add("fa-times")
+    } else {
+      icon.classList.remove("fa-times")
+      icon.classList.add("fa-bars")
+    }
+  })
+
+  // Close menu when a link is clicked
+  const navLinks = mainNav.querySelectorAll("a")
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      mainNav.classList.remove("active")
+      menuToggle.querySelector("i").classList.remove("fa-times")
+      menuToggle.querySelector("i").classList.add("fa-bars")
+    })
+  })
+})

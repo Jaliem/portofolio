@@ -40,7 +40,7 @@ body {
     padding: 0 20px;
 }
 
-/* Header styles */
+/* Header and Navigation styles */
 header {
     background: var(--secondary-color);
     padding: 20px 0;
@@ -49,57 +49,71 @@ header {
     top: 0;
     z-index: 1000;
     transition: var(--transition);
-}
-
-header .container {
+  }
+  
+  header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-}
+  }
 
-.logo {
+  header.scrolled {
+    background: var(--secondary-color);
+  }
+  
+  .logo {
     font-size: 24px;
     font-weight: 700;
     color: var(--primary-color);
     text-decoration: none;
-}
-
-nav ul {
+  }
+  
+  nav ul {
     display: flex;
     list-style: none;
-}
-
-nav li {
+  }
+  
+  nav li {
     margin-left: 30px;
-}
-
-nav a {
+  }
+  
+  nav a {
     color: var(--background-color);
     text-decoration: none;
     font-weight: 600;
     transition: var(--transition);
-}
-
-nav a:hover {
+  }
+  
+  nav a:hover {
     color: var(--primary-color);
-}
-
-#theme-toggle {
+  }
+  
+  #menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--background-color);
+    font-size: 24px;
+    cursor: pointer;
+  }
+  
+  #theme-toggle {
     background: none;
     border: none;
     color: var(--background-color);
     font-size: 20px;
     cursor: pointer;
     transition: var(--transition);
-}
-
-#theme-toggle:hover {
+  }
+  
+  #theme-toggle:hover {
     color: var(--primary-color);
-}
+  }
+  
 
 /* Hero section */
 #hero {
-    min-height: 100vh;
+    min-height: 90vh;
     background: linear-gradient(135deg, #4A90E2 0%, #2171CD 100%);
     padding: 0 8rem;
     display: flex;
@@ -604,57 +618,292 @@ footer {
         opacity: 1;
     }
 }
-
-/* Responsive design */
-@media (max-width: 768px) {
-    header .container {
-        flex-direction: column;
+  
+  /* Responsive styles */
+  @media (max-width: 768px) {
+    #menu-toggle {
+      display: block;
     }
-
+  
+    nav {
+      position: fixed;
+      top: 80px; /* Adjust based on your header height */
+      left: -100%;
+      width: 100%;
+      height: calc(100vh - 80px);
+      background: var(--secondary-color);
+      transition: 0.3s;
+    }
+  
+    nav.active {
+      left: 0;
+    }
+  
     nav ul {
-        margin-top: 20px;
+      flex-direction: column;
+      align-items: center;
+      padding-top: 20px;
     }
-
+  
     nav li {
-        margin: 0 10px;
+      margin: 15px 0;
     }
-
+  }
+  
+  /* Remove conflicting styles */
+  @media (max-width: 768px) {
+    header .container {
+      flex-direction: row; /* Override the previous column direction */
+    }
+  
+    nav ul {
+      margin-top: 0; /* Remove previous margin */
+    }
+  
+    nav li {
+      margin: 0; /* Remove previous margin */
+    }
+  }
+  
+  /* Ensure proper spacing for content below fixed header */
+  body {
+    padding-top: 80px; /* Adjust this value based on your header height */
+  }
+  
+  /* Responsive design improvements */
+  @media (max-width: 1024px) {
+    .container {
+      width: 95%;
+    }
+  
     #hero {
-        text-align: center;
+      padding: 0 4rem;
     }
-
+  
+    #hero .container {
+      flex-direction: column;
+      text-align: center;
+    }
+  
     .hero-content {
-        margin-bottom: 50px;
+      max-width: 100%;
     }
-
-    .about-content {
-        flex-direction: column;
+  
+    .hero-image {
+      justify-content: center;
+      margin-top: 2rem;
     }
-
-    .about-text {
-        padding-right: 0;
-        margin-bottom: 30px;
+  
+    .profile-image {
+      width: 250px;
+      height: 250px;
     }
-
-    .contact-content {
-        flex-direction: column;
+  
+    .skills-grid,
+    .project-grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
-
-    .contact-info {
-        margin-right: 0;
-        margin-bottom: 30px;
+  }
+  
+  @media (max-width: 768px) {
+    #hero {
+      padding: 0 2rem;
     }
-
+  
+    #hero h1 {
+      font-size: 2.5rem;
+    }
+  
+    #hero h2 {
+      font-size: 1.5rem;
+    }
+  
+    #hero p {
+      font-size: 1rem;
+    }
+  
+    .section-title {
+      font-size: 2rem;
+    }
+  
+    .skills-grid,
+    .project-grid {
+      grid-template-columns: 1fr;
+    }
+  
     .education-timeline::before {
-        left: 20px;
+      left: 20px;
     }
-
+  
     .education-card {
-        width: 100%;
-        left: 0 !important;
+      width: calc(100% - 40px);
+      left: 40px !important;
     }
-
+  
     .education-card::before {
-        left: 10px !important;
+      left: -30px !important;
     }
-}
+  
+    .education-card:nth-child(even) {
+      left: 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    header {
+      padding: 10px 0;
+    }
+  
+    .logo {
+      font-size: 20px;
+    }
+  
+    nav ul {
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  
+    nav li {
+      margin: 5px 10px;
+    }
+  
+    #hero {
+      padding: 0 1rem;
+    }
+  
+    #hero h1 {
+      font-size: 2rem;
+    }
+  
+    #hero h2 {
+      font-size: 1.2rem;
+    }
+  
+    .profile-image {
+      width: 200px;
+      height: 200px;
+    }
+  
+    .cta-button {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+    }
+  
+    .contact-options {
+      flex-direction: column;
+    }
+  
+    .contact-options label {
+      margin-bottom: 10px;
+    }
+  }
+  
+  /* Improve touch targets for mobile */
+  @media (max-width: 768px) {
+    nav a,
+    .button,
+    .submit-btn {
+      padding: 12px 20px;
+    }
+  
+    .social-links a {
+      font-size: 28px;
+      margin-right: 15px;
+    }
+  
+    .form-group input,
+    .form-group textarea {
+      padding: 12px;
+    }
+  }
+  
+  /* Optimize images for mobile */
+  @media (max-width: 768px) {
+    .project-card img {
+      height: 150px;
+    }
+  }
+  
+  /* Improve readability on small screens */
+  @media (max-width: 480px) {
+    body {
+      font-size: 14px;
+    }
+  
+    .skill-card,
+    .project-card,
+    .education-card {
+      padding: 15px;
+    }
+  }
+  
+  /* About section - Updated styles */
+  .about-content {
+    display: flex;
+    flex-direction: column; /* Change to column layout by default */
+    gap: 3rem; /* Add gap between text and stats */
+  }
+  
+  .about-text {
+    max-width: 800px;
+    margin: 0 auto; /* Center the text */
+    padding: 0 20px;
+  }
+  
+  .about-stats {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    width: 100%;
+    padding: 0 20px;
+  }
+  
+  .stat {
+    text-align: center;
+    background: var(--card-background);
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: var(--transition);
+  }
+  
+  .stat:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  }
+  
+  .stat h3 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+  }
+  
+  .stat p {
+    color: var(--text-color);
+    font-size: 1.1rem;
+  }
+  
+  /* Responsive adjustments */
+  @media (max-width: 768px) {
+    .about-stats {
+      grid-template-columns: 1fr; /* Stack stats vertically on mobile */
+      max-width: 400px; /* Limit width on mobile for better readability */
+      margin: 0 auto;
+    }
+  
+    .stat {
+      padding: 1.5rem;
+    }
+  
+    .stat h3 {
+      font-size: 2rem;
+    }
+  }
+  
+  /* Theme toggle button positioning */
+  #theme-toggle {
+    position: relative;
+    z-index: 60; /* Ensure it stays above overlay */
+  }
+  
+  
