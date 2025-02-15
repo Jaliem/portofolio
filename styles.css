@@ -15,7 +15,7 @@
     --text-color: #f8f9fa;
     --background-color: #1a1a1a;
     --card-background: #2c2c2c;
-    
+
     --border-color: #444444;
 }
 
@@ -43,9 +43,9 @@ body {
 /* Header and Navigation styles */
 header {
     background: var(--secondary-color);
-    padding: 20px 0;
+    padding: 21px 0;
     position: fixed;
-    width: 100%;
+    width: 100vw;
     top: 0;
     z-index: 1000;
     transition: var(--transition);
@@ -508,7 +508,7 @@ section {
   
   /* Form Styles */
   #contact-form {
-    background: rgba(255, 255, 255, 0.05);
+    background: var(--card-background);
     padding: 2rem;
     border-radius: 10px;
     backdrop-filter: blur(10px);
@@ -833,7 +833,7 @@ footer {
   
   @media (max-width: 480px) {
     header {
-      padding: 10px 0;
+      padding: 24px 0;
     }
   
     .logo {
